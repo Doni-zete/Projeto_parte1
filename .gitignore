@@ -29,7 +29,10 @@
 .packages
 .pub-cache/
 .pub/
+package-lock.json
 /build/
+/node_modules/
+
 
 # Web related
 lib/generated_plugin_registrant.dart
