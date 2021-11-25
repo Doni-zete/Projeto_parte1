@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "908710118708",
+    "project_id": "app-cripto-ee9df",
+    "storage_bucket": "app-cripto-ee9df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908710118708:android:22e6e5e2a140474500d161",
+        "android_client_info": {
+          "package_name": "com.example.gerenciador_criptomoeda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "908710118708-pu1kfic9v0ru3uo98s16eh0jevendj3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnoQpAbTmc4Nihqb9YfmclTlFfWNKrhww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908710118708-pu1kfic9v0ru3uo98s16eh0jevendj3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
