@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Loginpagina extends StatefulWidget {
@@ -8,60 +10,98 @@ class Loginpagina extends StatefulWidget {
 }
 
 class _LoginpaginaState extends State<Loginpagina> {
-  TextEditingController txtnome = TextEditingController();
+  var txtEmail = TextEditingController();
+  var txtSenha = TextEditingController();
+  bool isLoading = false;
 
- 
   @override
   Widget build(BuildContext context) {
-    var nome = TextEditingController();
+    var email = TextEditingController();
     return Scaffold(
       body: Container(
-        
-          color: Colors.white,
-          padding: EdgeInsets.only(
-            top: 90,
-            left: 40,
-            right: 40,
-          ),
-          child: ListView(
-            children: <Widget>[
-              SizedBox(
-                width: 128,
-                height: 128,
-                child: Image.asset('images/buy.PNG'),
+        color: Colors.white60,
+        padding: EdgeInsets.only(
+          top: 90,
+          left: 40,
+          right: 40,
+        ),
+        child: ListView(
+          children: <Widget>[
+            SizedBox(
+              width: 128,
+              height: 128,
+              child: Image.asset('images/buy.PNG'),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextField(
+              controller: email,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: nome,
-                decoration: InputDecoration(
-                  labelText: 'Nome',
-                  border: OutlineInputBorder(),
+            ),
+            SizedBox(height: 15),
+            TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+                labelStyle: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
                 ),
               ),
-              SizedBox(height: 15),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "Password",
-                  border: OutlineInputBorder(),
-                  labelStyle: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                  ),
+            ),
+            const SizedBox(height: 40),
+            Container(
+              width: 100,
+              height: 40,
+              color: Colors.blueGrey[400],
+              child: OutlinedButton(
+                child: const Text(
+                  'Entrar',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
                 ),
-              ),
-              SizedBox(height: 40),
-              ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed('/home');
+                  setState(() {
+                    isLoading = true;
+                  });
+                  login(txtEmail.text, txtSenha.text);
                 },
-                child: Text('Entrar'),
-              )
-            ],
-          )),
+              ),
+            ),
+            const SizedBox(height: 40),
+            Container(
+             width: 100,
+              height: 40,
+              color: Colors.blueGrey[400],
+              child: OutlinedButton(
+             
+                child: const Text(
+                  'Criar conta',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/criar_conta');
+                },
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
     );
   }
 }
+
+//login  firebase
+void login(email, senha) {}

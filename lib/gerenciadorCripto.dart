@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gerenciador_criptomoeda/controller_tela.dart';
+import 'package:gerenciador_criptomoeda/criar_conta.dart';
 import 'package:gerenciador_criptomoeda/login_pagina.dart';
 
 
@@ -14,8 +15,10 @@ class GerenciadorCripto extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
+      initialRoute: '/login',
       routes: {
-        '/': (context) => Loginpagina(),
+        '/login': (context) => Loginpagina(),
+        '/criar_conta':(context)=>CriarContaPage(),
         '/home': (context) => Controller(),
         
       },
