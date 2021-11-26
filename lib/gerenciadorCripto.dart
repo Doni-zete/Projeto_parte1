@@ -3,7 +3,6 @@ import 'package:gerenciador_criptomoeda/controller_tela.dart';
 import 'package:gerenciador_criptomoeda/criar_conta.dart';
 import 'package:gerenciador_criptomoeda/login_pagina.dart';
 
-
 class GerenciadorCripto extends StatelessWidget {
   const GerenciadorCripto({Key? key}) : super(key: key);
 
@@ -18,11 +17,9 @@ class GerenciadorCripto extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => Loginpagina(),
-        '/criar_conta':(context)=>CriarContaPage(),
+        '/criar_conta': (context) => CriarContaPage(),
         '/home': (context) => Controller(),
-        
       },
     );
   }
 }
-

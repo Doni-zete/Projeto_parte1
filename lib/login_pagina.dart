@@ -78,11 +78,10 @@ class _LoginpaginaState extends State<Loginpagina> {
             ),
             const SizedBox(height: 40),
             Container(
-             width: 100,
+              width: 100,
               height: 40,
               color: Colors.blueGrey[400],
               child: OutlinedButton(
-             
                 child: const Text(
                   'Criar conta',
                   style: TextStyle(

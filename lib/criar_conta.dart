@@ -63,6 +63,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
               children: [
                 Container(
                   width: 150,
+                  color: Colors.blueGrey[400],
                   child: OutlinedButton(
                     child: const Text(
                       'Criar',
@@ -78,6 +79,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                 ),
                 Container(
                   width: 150,
+                  color: Colors.blueGrey[400],
                   child: OutlinedButton(
                     child: const Text(
                       'Cancelar',
