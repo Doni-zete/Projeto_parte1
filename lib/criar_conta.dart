@@ -19,8 +19,8 @@ class _CriarContaPageState extends State<CriarContaPage> {
       appBar: AppBar(
           title: const Text('Gerenciador de Criptomoedas'),
           centerTitle: true,
-          backgroundColor: Colors.blueGrey[50]),
-      backgroundColor: Colors.white10,
+          backgroundColor: Colors.blueGrey[400]),
+      backgroundColor: Colors.blueGrey[50],
       body: Container(
         padding: const EdgeInsets.all(50),
         child: ListView(
@@ -40,7 +40,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
             TextField(
               controller: txtEmail,
               style: const TextStyle(
-                  color: Colors.brown, fontWeight: FontWeight.w300),
+                  color: Colors.blueGrey, fontWeight: FontWeight.w300),
               decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email), labelText: 'Email'),
             ),
@@ -49,7 +49,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
               obscureText: true,
               controller: txtSenha,
               style: const TextStyle(
-                color: Colors.brown,
+                color: Colors.blueGrey,
                 fontWeight: FontWeight.w300,
               ),
               decoration: const InputDecoration(
@@ -64,7 +64,13 @@ class _CriarContaPageState extends State<CriarContaPage> {
                 Container(
                   width: 150,
                   child: OutlinedButton(
-                    child: const Text('criar'),
+                    child: const Text(
+                      'Criar',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
                     onPressed: () {
                       criarConta(txtNome.text, txtEmail.text, txtSenha.text);
                     },
@@ -73,7 +79,13 @@ class _CriarContaPageState extends State<CriarContaPage> {
                 Container(
                   width: 150,
                   child: OutlinedButton(
-                    child: const Text('cancelar'),
+                    child: const Text(
+                      'Cancelar',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -96,7 +108,8 @@ class _CriarContaPageState extends State<CriarContaPage> {
         .createUserWithEmailAndPassword(
       email: email,
       password: senha,
-    ).then((value) {
+    )
+        .then((value) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Usuário criado com sucesso!'),
