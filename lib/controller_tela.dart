@@ -42,10 +42,13 @@ class _ControllerState extends State<Controller> {
         currentIndex: telaAtual,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.list), label: "Lista"),
+          
           BottomNavigationBarItem(
               icon: Icon(Icons.account_balance_wallet_rounded),
               label: 'Vender'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Sobre'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Sobre'),
+          
         ],
         onTap: (index) {
           setState(() {

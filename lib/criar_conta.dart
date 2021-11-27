@@ -12,6 +12,8 @@ class _CriarContaPageState extends State<CriarContaPage> {
   var txtNome = TextEditingController();
   var txtEmail = TextEditingController();
   var txtSenha = TextEditingController();
+  var txtTelefone = TextEditingController();
+  var txtCpf = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,24 @@ class _CriarContaPageState extends State<CriarContaPage> {
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 labelText: 'Nome',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 15),
+            TextField(
+              controller: txtCpf,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.perm_identity),
+                labelText: 'Cpf',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 15),
+            TextField(
+              controller: txtTelefone,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.phone_android),
+                labelText: 'Telefone',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -71,7 +91,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                           fontSize: 20),
                     ),
                     onPressed: () {
-                      criarConta(txtNome.text, txtEmail.text, txtSenha.text);
+                      criarConta(txtNome.text,txtCpf.text,txtTelefone.text,txtEmail.text, txtSenha.text );
                     },
                   ),
                 ),

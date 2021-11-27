@@ -19,6 +19,8 @@ class _PaginaMoedaState extends State<PaginaMoeda> {
     if (selecionadas.isEmpty) {
       return AppBar(
           title: Text('Gerenciador de Criptomoedas'), centerTitle: true);
+
+          
     } else {
       return AppBar(
         leading: IconButton(
@@ -29,6 +31,8 @@ class _PaginaMoedaState extends State<PaginaMoeda> {
             });
           },
         ),
+
+        
         title: Text('${selecionadas.length} selecionadas'),
         backgroundColor: Colors.blueGrey[50],
         elevation: 1,
@@ -122,5 +126,7 @@ class _PaginaMoedaState extends State<PaginaMoeda> {
             )
           : null,
     );
+    
   }
+  
 }
