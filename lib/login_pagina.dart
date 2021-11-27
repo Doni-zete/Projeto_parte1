@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 
 class Loginpagina extends StatefulWidget {
@@ -36,14 +36,20 @@ class _LoginpaginaState extends State<Loginpagina> {
               height: 20,
             ),
             TextField(
-              controller: email,
+              controller: txtEmail,
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: "Email",
                 border: OutlineInputBorder(),
+                labelStyle: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                ),
               ),
             ),
             SizedBox(height: 15),
             TextField(
+              controller: txtSenha,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: "Password",
@@ -94,13 +100,33 @@ class _LoginpaginaState extends State<Loginpagina> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            // const SizedBox(height: 20),
           ],
         ),
       ),
     );
   }
-}
 
 //login  firebase
-void login(email, senha) {}
+  void login(email, senha) {
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: senha)
+        .then((value) {
+      Navigator.pushNamed(context, '/principal');
+    }).catchError((erro) {
+      var mensagem = '';
+      if (erro.code == 'user-not-found') {
+        mensagem = 'ERRO: Usuário não encontrado';
+      } else if (erro.code == 'wrong-password') {
+        mensagem = 'ERRO: Senha incorreta';
+      } else if (erro.code == 'invalid-email') {
+        mensagem = 'ERRO: Email inválido';
+      } else {
+        mensagem = erro.message;
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(mensagem), duration: const Duration(seconds: 2)));
+    });
+  }
+}

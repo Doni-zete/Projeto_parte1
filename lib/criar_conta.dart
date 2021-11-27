@@ -27,22 +27,20 @@ class _CriarContaPageState extends State<CriarContaPage> {
           children: [
             TextField(
               controller: txtNome,
-              style: const TextStyle(
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.w300,
-              ),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 labelText: 'Nome',
+                border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 15),
             TextField(
               controller: txtEmail,
-              style: const TextStyle(
-                  color: Colors.blueGrey, fontWeight: FontWeight.w300),
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.email), labelText: 'Email'),
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email),
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+              ),
             ),
             const SizedBox(height: 20),
             TextField(
