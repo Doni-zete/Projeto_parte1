@@ -106,13 +106,13 @@ class _LoginpaginaState extends State<Loginpagina> {
       ),
     );
   }
-
+  
 //login  firebase
-  void login(email, senha) {
+   void login(email, senha) {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: senha)
         .then((value) {
-      Navigator.pushNamed(context, '/principal');
+      Navigator.pushNamed(context, '/controller');
     }).catchError((erro) {
       var mensagem = '';
       if (erro.code == 'user-not-found') {

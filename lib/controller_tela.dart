@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gerenciador_criptomoeda/adicionar_moedas.dart';
 import 'package:gerenciador_criptomoeda/configuracao_sobreautor.dart';
 import 'package:gerenciador_criptomoeda/pagina_moeda.dart';
 import 'package:gerenciador_criptomoeda/pagina_vender_moeda.dart';
@@ -22,8 +23,10 @@ class _ControllerState extends State<Controller> {
         controller: pageController,
         children: [
           PaginaMoeda(),
+          AdiconarMoeda(),
           PaginaVender(),
           ConfiguracaoSobre(),
+          
         ],
         onPageChanged: (index) {
           setState(() {
@@ -42,12 +45,14 @@ class _ControllerState extends State<Controller> {
         currentIndex: telaAtual,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.list), label: "Lista"),
+          BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline), label: 'Adicionar'),
           
           BottomNavigationBarItem(
               icon: Icon(Icons.account_balance_wallet_rounded),
               label: 'Vender'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Sobre'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Sobre'),
+
+
           
         ],
         onTap: (index) {

@@ -17,8 +17,8 @@ class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
   //
   getDocumentById(id) async{
     
-    // select * from tb_cafes where id = 1;
-    await FirebaseFirestore.instance.collection('cafes')
+    // select * from tb_Criptomoedas where id = 1;
+    await FirebaseFirestore.instance.collection('Criptomoedas')
       .doc(id).get().then((doc){
         txtNome.text = doc.get('nome');
         txtPreco.text = doc.get('preco');
@@ -43,7 +43,7 @@ class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Café Store'),
+        title: const Text(''),
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.brown,
@@ -96,7 +96,7 @@ class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
                         // ATUALIZAR DOCUMENTO NO FIRESTORE
                         //
                         FirebaseFirestore.instance
-                            .collection('cafes')
+                            .collection('Criptomoedas')
                             .doc(id.toString()).set({'nome': txtNome.text, 'preco': txtPreco.text});
                       }
 

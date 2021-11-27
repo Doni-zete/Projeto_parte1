@@ -2,16 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
-
-class AdiconarMoeda extends StatefulWidget {
-  const AdiconarMoeda({Key? key}) : super(key: key);
+class AdicionarUsuario extends StatefulWidget {
+  const AdicionarUsuario({Key? key}) : super(key: key);
 
   @override
-  _AdiconarMoedaState createState() => _AdiconarMoedaState();
+  _AdicionarUsuarioState createState() => _AdicionarUsuarioState();
 }
 
-class _AdiconarMoedaState extends State<AdiconarMoeda> {
+class _AdicionarUsuarioState extends State<AdicionarUsuario> {
   //Referenciar a Coleção de Cafés
   late CollectionReference cafes;
 

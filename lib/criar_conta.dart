@@ -10,10 +10,11 @@ class CriarContaPage extends StatefulWidget {
 
 class _CriarContaPageState extends State<CriarContaPage> {
   var txtNome = TextEditingController();
-  var txtEmail = TextEditingController();
-  var txtSenha = TextEditingController();
-  var txtTelefone = TextEditingController();
   var txtCpf = TextEditingController();
+  var txtTelefone = TextEditingController();
+  var txtSenha = TextEditingController();
+  var txtEmail = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -35,34 +36,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 15),
-            TextField(
-              controller: txtCpf,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.perm_identity),
-                labelText: 'Cpf',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 15),
-            TextField(
-              controller: txtTelefone,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.phone_android),
-                labelText: 'Telefone',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 15),
-            TextField(
-              controller: txtEmail,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.email),
-                labelText: 'Email',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 20),
+          const SizedBox(height: 20),
             TextField(
               obscureText: true,
               controller: txtSenha,
@@ -75,6 +49,61 @@ class _CriarContaPageState extends State<CriarContaPage> {
                 labelText: 'Senha',
               ),
             ),
+
+
+
+
+            // SizedBox(height: 15),
+            // TextField(
+            //   controller: txtCpf,
+            //   decoration: InputDecoration(
+            //     prefixIcon: Icon(Icons.perm_identity),
+            //     labelText: 'Cpf',
+            //     border: OutlineInputBorder(),
+            //   ),
+            // ),
+            // SizedBox(height: 15),
+            // TextField(
+            //   controller: txtTelefone,
+            //   decoration: InputDecoration(
+            //     prefixIcon: Icon(Icons.phone_android),
+            //     labelText: 'Telefone',
+            //     border: OutlineInputBorder(),
+            //   ),
+            // ),
+           
+        SizedBox(height: 15),
+            TextField(
+              controller: txtCpf,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.perm_identity),
+                labelText: 'Cpf',
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+
+            SizedBox(height: 15),
+            TextField(
+              controller: txtTelefone,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.phone_android),
+                labelText: 'Telefone',
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+          SizedBox(height: 15),
+            TextField(
+              controller: txtEmail,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email),
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+           
             const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +120,15 @@ class _CriarContaPageState extends State<CriarContaPage> {
                           fontSize: 20),
                     ),
                     onPressed: () {
-                      criarConta(txtNome.text,txtCpf.text,txtTelefone.text,txtEmail.text, txtSenha.text );
+                      criarConta(
+                        txtNome.text,
+                        txtSenha.text,
+                        txtCpf.text,
+                        txtTelefone.text,
+                        txtEmail.text,
+                        
+                        
+                      );
                     },
                   ),
                 ),
@@ -123,7 +160,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
   //
   // criar conta firebase
   //
-  void criarConta(nome, email, senha) {
+  void criarConta(nome, senha, cpf, telefone, email) {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(
       email: email,

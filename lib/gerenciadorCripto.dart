@@ -20,8 +20,9 @@ class GerenciadorCripto extends StatelessWidget {
       routes: {
         '/login': (context) => Loginpagina(),
         '/criar_conta': (context) => CriarContaPage(),
-        '/principal': (context) => AdiconarMoeda(),
+        '/controller': (context) => Controller(),
        '/inserir': (context) => InserirDocumentoPage(),
+
       },
     );
   }
