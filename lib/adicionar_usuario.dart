@@ -10,34 +10,24 @@ class AdicionarUsuario extends StatefulWidget {
 }
 
 class _AdicionarUsuarioState extends State<AdicionarUsuario> {
-  //Referenciar a Coleção de Cafés
-  late CollectionReference cafes;
+  //Referenciar a Coleção de Usuarios
+  late CollectionReference usuarios;
 
   @override
   void initState() {
     super.initState();
 
-    cafes = FirebaseFirestore.instance.collection('Criptomoedas');
+    usuarios = FirebaseFirestore.instance.collection('Usuarios');
   }
 
   //
   // Item Lista
   // Definir a aparência de cada item da lista
   Widget itemLista(item) {
-    String nome = item.data()['nome'];
-    String preco = item.data()['preco'];
+    String nome = item.data()['n00ome'];
 
     return ListTile(
       title: Text(nome, style: const TextStyle(fontSize: 30)),
-      subtitle: Text('R\$ $preco', style: const TextStyle(fontSize: 25)),
-      trailing: IconButton(
-          icon: const Icon(Icons.delete),
-          onPressed: () {
-            //
-            // APAGAR UM DOCUMENTO DA COLEÇÃO
-            //
-            cafes.doc(item.id).delete();
-          }),
       onTap: () {
         Navigator.pushNamed(context, '/inserir', arguments: item.id);
       },
@@ -48,28 +38,28 @@ class _AdicionarUsuarioState extends State<AdicionarUsuario> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adiconar Criptomoeda'),
+        title: const Text('Adicionar Criptomoeda'),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
               FirebaseAuth.instance.signOut();
-              Navigator.pushReplacementNamed(context, '/login');
+              Navigator.pushReplacementNamed(context, '/criar_conta');
             },
           )
         ],
       ),
 
       //
-      // EXIBIR OS DOCUMENTOS DA COLEÇÃO DE CAFÉS
+      // EXIBIR OS DOCUMENTOS DA COLEÇÃO DE Usuarios
       //
       body: StreamBuilder<QuerySnapshot>(
 
           //fonte de dados (coleção)
-          stream: cafes.snapshots(),
+          stream: usuarios.snapshots(),
 
           //exibir os dados retornados
           builder: (context, snapshot) {
@@ -92,10 +82,10 @@ class _AdicionarUsuarioState extends State<AdicionarUsuario> {
             }
           }),
 
-      backgroundColor: Colors.brown.shade100,
+      backgroundColor: Colors.blueGrey[400],
       floatingActionButton: FloatingActionButton(
         foregroundColor: Colors.black,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.white,
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.pushNamed(context, '/inserir');

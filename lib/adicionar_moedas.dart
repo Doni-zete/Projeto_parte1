@@ -13,13 +13,15 @@ class AdiconarMoeda extends StatefulWidget {
 
 class _AdiconarMoedaState extends State<AdiconarMoeda> {
   //Referenciar a Coleção de Cafés
-  late CollectionReference cafes;
+  late CollectionReference criptomoedas;
 
   @override
+
+  
   void initState() {
     super.initState();
 
-    cafes = FirebaseFirestore.instance.collection('Criptomoedas');
+    criptomoedas = FirebaseFirestore.instance.collection('Criptomoedas');
   }
 
   //
@@ -30,15 +32,17 @@ class _AdiconarMoedaState extends State<AdiconarMoeda> {
     String preco = item.data()['preco'];
 
     return ListTile(
+
+      
       title: Text(nome, style: const TextStyle(fontSize: 30)),
       subtitle: Text('R\$ $preco', style: const TextStyle(fontSize: 25)),
       trailing: IconButton(
           icon: const Icon(Icons.delete),
           onPressed: () {
             //
-            // APAGAR UM DOCUMENTO DA COLEÇÃO
+            // apagar um documento da criação
             //
-            cafes.doc(item.id).delete();
+            criptomoedas.doc(item.id).delete();
           }),
       onTap: () {
         Navigator.pushNamed(context, '/inserir', arguments: item.id);
@@ -52,26 +56,26 @@ class _AdiconarMoedaState extends State<AdiconarMoeda> {
       appBar: AppBar(
         title: const Text('Adiconar Criptomoeda'),
         centerTitle: true,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.blueGrey[400],
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              FirebaseAuth.instance.signOut();
-              Navigator.pushReplacementNamed(context, '/login');
-            },
-          )
+          // IconButton(
+          //   icon: const Icon(Icons.logout),
+          //   onPressed: () async {
+          //     FirebaseAuth.instance.signOut();
+          //     Navigator.pushReplacementNamed(context, '/login');
+          //   },
+          // )
         ],
       ),
 
       //
-      // EXIBIR OS DOCUMENTOS DA COLEÇÃO DE CAFÉS
+      // EXIBIR OS DOCUMENTOS DA COLEÇÃO DE Criptomoedas
       //
       body: StreamBuilder<QuerySnapshot>(
 
           //fonte de dados (coleção)
-          stream: cafes.snapshots(),
+          stream: criptomoedas.snapshots(),
 
           //exibir os dados retornados
           builder: (context, snapshot) {
@@ -94,10 +98,10 @@ class _AdiconarMoedaState extends State<AdiconarMoeda> {
             }
           }),
 
-      backgroundColor: Colors.brown.shade100,
+      backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         foregroundColor: Colors.black,
-        backgroundColor: Colors.brown,
+        backgroundColor: Colors.blueGrey[400],
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.pushNamed(context, '/inserir');

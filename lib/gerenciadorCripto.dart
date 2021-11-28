@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gerenciador_criptomoeda/adicionar_moedas.dart';
+import 'package:gerenciador_criptomoeda/adicionar_usuario.dart';
 import 'package:gerenciador_criptomoeda/controller_tela.dart';
 import 'package:gerenciador_criptomoeda/criar_conta.dart';
 import 'package:gerenciador_criptomoeda/documetos.dart';
@@ -22,6 +23,7 @@ class GerenciadorCripto extends StatelessWidget {
         '/criar_conta': (context) => CriarContaPage(),
         '/controller': (context) => Controller(),
        '/inserir': (context) => InserirDocumentoPage(),
+       '/inserirusuario': (context) => AdicionarUsuario(),
 
       },
     );

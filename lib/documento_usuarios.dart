@@ -10,18 +10,18 @@ class InserirDocumentoPage extends StatefulWidget {
 
 class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
   var txtNome = TextEditingController();
-  var txtPreco = TextEditingController();
+  var txtCpf = TextEditingController();
 
   //
   // RETORNAR UM DOCUMENTO a partir do ID
   //
   getDocumentById(id) async{
     
-    // select * from tb_Criptomoedas where id = 1;
-    await FirebaseFirestore.instance.collection('Criptomoedas')
+    // select * from tb_Usuarios where id = 1;
+    await FirebaseFirestore.instance.collection('Usuarios')
       .doc(id).get().then((doc){
         txtNome.text = doc.get('nome');
-        txtPreco.text = doc.get('preco');
+        txtCpf.text = doc.get('cpf');
       });
 
   }
@@ -35,7 +35,7 @@ class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
     var id = ModalRoute.of(context)?.settings.arguments;
 
     if (id != null){
-      if (txtNome.text.isEmpty && txtPreco.text.isEmpty){
+      if (txtNome.text.isEmpty && txtCpf.text.isEmpty){
         getDocumentById(id);
       }
     }
@@ -43,44 +43,49 @@ class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Adicionar Criptomoeda'),
+        title: const Text(''),
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blueGrey[400],
+        backgroundColor: Colors.brown,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.brown[50],
       body: Container(
         padding: const EdgeInsets.all(50),
         child: ListView(
           children: [
-             TextField(
+            TextField(
               controller: txtNome,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.edit),
+              style: const TextStyle(
+                color: Colors.brown,
+                fontWeight: FontWeight.w300,
+              ),
+              decoration: const InputDecoration(
                 labelText: 'Nome',
-                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
             TextField(
-              controller: txtPreco,
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.monetization_on),
+              controller: txtCpf,
+              style: const TextStyle(
+                color: Colors.brown,
+                fontWeight: FontWeight.w300,
+              ),
+              decoration: const InputDecoration(
                 labelText: 'Preço',
-                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container( width: 150,
+                Container(
+                  width: 150,
                   color: Colors.blueGrey[400],
                   child: OutlinedButton(
-                    child: const Text('Salvar', style: TextStyle(
+                    child: const Text('Salvar',style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 30)),
+                          fontSize: 20)),
                     onPressed: () {
 
                       if (id == null){
@@ -88,15 +93,15 @@ class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
                         // ADICIONAR DOCUMENTO NO FIRESTORE
                         //
                         FirebaseFirestore.instance
-                            .collection('Criptomoedas')
-                            .add({'nome': txtNome.text, 'preco': txtPreco.text});
+                            .collection('Usuarios')
+                            .add({'nome': txtNome.text, 'preco': txtCpf.text});
                       }else{
                         //
                         // ATUALIZAR DOCUMENTO NO FIRESTORE
                         //
                         FirebaseFirestore.instance
-                            .collection('Criptomoedas')
-                            .doc(id.toString()).set({'nome': txtNome.text, 'preco': txtPreco.text});
+                            .collection('Usuarios')
+                            .doc(id.toString()).set({'nome': txtNome.text, 'preco': txtCpf.text});
                       }
 
 
@@ -109,13 +114,14 @@ class _InserirDocumentoPageState extends State<InserirDocumentoPage> {
                     },
                   ),
                 ),
-                Container( width: 150,
+                Container(
+                   width: 150,
                   color: Colors.blueGrey[400],
                   child: OutlinedButton(
-                    child: const Text('Cancelar', style: TextStyle(
+                    child: const Text('cancelar',style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 30)),
+                          fontSize: 20)),
                       onPressed: () {
                         Navigator.pop(context);
                       }),

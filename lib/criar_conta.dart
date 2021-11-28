@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +15,45 @@ class _CriarContaPageState extends State<CriarContaPage> {
   var txtTelefone = TextEditingController();
   var txtSenha = TextEditingController();
   var txtEmail = TextEditingController();
+
+
+
+  
+
+  //
+  // RETORNAR UM DOCUMENTO a partir do ID
+  //
+  getDocumentById(id) async{
+    
+    // select * from tb_Usuarios where id = 1;
+    await FirebaseFirestore.instance.collection('Usuarios')
+      .doc(id).get().then((doc){
+        txtNome.text = doc.get('nome');
+        txtCpf.text = doc.get('cpf');
+        txtSenha.text = doc.get('senha');
+        txtTelefone.text = doc.get('telefone');
+        txtEmail.text = doc.get('email');
+        
+      });
+
+  }
   
 
   @override
   Widget build(BuildContext context) {
+ var id = ModalRoute.of(context)?.settings.arguments;
+
+    if (id != null){
+      if (txtNome.text.isEmpty && txtCpf.text.isEmpty&& txtSenha.text.isEmpty&& txtTelefone.text.isEmpty){
+        getDocumentById(id);
+      }
+    }
+
+
+
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Gerenciador de Criptomoedas'),
+          title: const Text('Criar Conta'),
           centerTitle: true,
           backgroundColor: Colors.blueGrey[400]),
       backgroundColor: Colors.blueGrey[50],
@@ -50,27 +83,6 @@ class _CriarContaPageState extends State<CriarContaPage> {
               ),
             ),
 
-
-
-
-            // SizedBox(height: 15),
-            // TextField(
-            //   controller: txtCpf,
-            //   decoration: InputDecoration(
-            //     prefixIcon: Icon(Icons.perm_identity),
-            //     labelText: 'Cpf',
-            //     border: OutlineInputBorder(),
-            //   ),
-            // ),
-            // SizedBox(height: 15),
-            // TextField(
-            //   controller: txtTelefone,
-            //   decoration: InputDecoration(
-            //     prefixIcon: Icon(Icons.phone_android),
-            //     labelText: 'Telefone',
-            //     border: OutlineInputBorder(),
-            //   ),
-            // ),
            
         SizedBox(height: 15),
             TextField(
@@ -103,9 +115,9 @@ class _CriarContaPageState extends State<CriarContaPage> {
               ),
             ),
 
-           
-            const SizedBox(height: 40),
-            Row(
+
+             const SizedBox(height: 40),
+             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
@@ -119,19 +131,55 @@ class _CriarContaPageState extends State<CriarContaPage> {
                           fontWeight: FontWeight.bold,
                           fontSize: 20),
                     ),
-                    onPressed: () {
-                      criarConta(
+                    onPressed: () => {
+                     
+                          criarConta(
                         txtNome.text,
                         txtSenha.text,
                         txtCpf.text,
                         txtTelefone.text,
                         txtEmail.text,
-                        
-                        
-                      );
-                    },
-                  ),
+                      ),
+                      
+                    
+                  
+
+                    if (id == null){
+                        //
+                        // ADICIONAR DOCUMENTO NO FIRESTORE
+                        //
+                        FirebaseFirestore.instance
+                            .collection('Usuarios')
+                            .add({'nome': txtNome.text,'senha': txtSenha.text, 'cpf': txtCpf.text, 'telefone': txtTelefone.text,'email': txtEmail.text,}),
+                      }else{
+                        //
+                        // ATUALIZAR DOCUMENTO NO FIRESTORE
+                        //
+                        FirebaseFirestore.instance
+                            .collection('Usuarios')
+                            .doc(id.toString()).set({'nome': txtNome.text,'senha': txtSenha.text, 'cpf': txtCpf.text, 'telefone': txtTelefone.text,'email': txtEmail.text})
+                      },
+
+                      
+
+
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Operação realizada com sucesso!'),
+                        duration: Duration(seconds: 2),
+                      )),
+
+                      Navigator.pop(context),
+
+                  }      
+                     
+  
+                  )
+                  
+
                 ),
+           
+            const SizedBox(height: 40),
+          
                 Container(
                   width: 150,
                   color: Colors.blueGrey[400],
@@ -153,7 +201,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
             const SizedBox(height: 60),
           ],
         ),
-      ),
+          ),
     );
   }
 
@@ -165,6 +213,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
         .createUserWithEmailAndPassword(
       email: email,
       password: senha,
+      
     )
         .then((value) {
       ScaffoldMessenger.of(context).showSnackBar(
